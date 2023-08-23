@@ -1,0 +1,9 @@
+--- excludes-old	2020-06-28 18:59:01.685629978 -0400
++++ excludes	2020-06-28 18:59:11.877685475 -0400
+@@ -1,5 +1,5 @@
+ # Drop all man pages
+-path-exclude=/usr/share/man/*
++#path-exclude=/usr/share/man/*
+ 
+ # Drop all translations
+ path-exclude=/usr/share/locale/*/LC_MESSAGES/*.mo
