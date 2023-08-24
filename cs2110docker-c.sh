@@ -70,19 +70,19 @@ if ! docker container ls >/dev/null; then
   exit 1
 fi
 
-echo "Found Docker Installation. Checking for existing containers."
-
-existingContainers=($(docker ps -a | grep "$imageBaseName" | awk '{print $1}'))
-echo "${existingContainers[@]}"
-if [ "${#existingContainers[@]}" -ne 0 ]; then
-  echo "Found CS 2110 containers. Stopping and removing them."
-  docker stop "${existingContainers[@]}" >/dev/null
-  docker rm "${existingContainers[@]}" >/dev/null
-else
-  echo "No existing CS 2110 containers."
-fi
+echo "Found Docker Installation"
 
 if [ "$action" = "stop" ]; then
+  existingContainers=($(docker ps -a | grep "$imageBaseName" | awk '{print $1}'))
+  echo "${existingContainers[@]}"
+  if [ "${#existingContainers[@]}" -ne 0 ]; then
+    echo "Found CS 2110 containers. Stopping and removing them."
+    docker stop "${existingContainers[@]}" >/dev/null
+    docker rm "${existingContainers[@]}" >/dev/null
+  else
+    echo "No existing CS 2110 containers."
+  fi
+
   echo "Successfully stopped CS 2110 containers"
   exit 0
 fi
