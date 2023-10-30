@@ -25,12 +25,4 @@ RUN $INST_SCRIPTS/base/man_pages.sh
 ### Install gcc/gdb
 RUN $INST_SCRIPTS/tools/cTools.sh
 
-### configure startup
-RUN $INST_SCRIPTS/base/libnss_wrapper.sh
-ADD ./src/scripts $STARTUPDIR
-RUN $INST_SCRIPTS/base/set_user_permission.sh $STARTUPDIR $HOME
-
-RUN useradd -NM -d "$HOME" -u 1000 user -s /bin/bash
-USER 1000
-
 ENTRYPOINT ["/bin/bash"]
