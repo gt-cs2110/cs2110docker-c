@@ -6,7 +6,7 @@ imageName="${imageBaseName}:${release}"
 
 define() { IFS=$'\n' read -r -d '' "${1}" || true; }
 
-description="Run the CS 2110 Docker C container"
+description="Run the CS 2110 C Docker container"
 
 usage_text=""
 define usage_text <<'EOF'
@@ -25,7 +25,7 @@ EOF
 
 print_help() {
   >&2 echo -e "$description\n\n$usage_text"
-}
+} 
 
 print_usage() {
   >&2 echo "$usage_text"
