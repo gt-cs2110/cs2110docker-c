@@ -1,4 +1,8 @@
 FROM ubuntu:22.04
+ARG GBA
+
+ENV REFRESHED_AT 2024-01-04
+ENV CS2110_IMAGE_VERSION 1.1.0
 
 ### Environment config
 ENV HOME=/cs2110 \
@@ -6,6 +10,7 @@ ENV HOME=/cs2110 \
     INST_SCRIPTS=/cs2110/install \
     SRC_FILES=/cs2110/src \
     DEBIAN_FRONTEND=noninteractive
+
 WORKDIR $HOME
 
 ### Add all install scripts for further steps
@@ -22,7 +27,8 @@ ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 ### Install man pages
 RUN $INST_SCRIPTS/base/man_pages.sh
 
-### Install gcc/gdb
+### Install gcc/gdb and mgba
 RUN $INST_SCRIPTS/tools/cTools.sh
+RUN if [ -n "$GBA" ]; then $INST_SCRIPTS/tools/gba.sh; fi
 
 ENTRYPOINT ["/bin/bash"]
