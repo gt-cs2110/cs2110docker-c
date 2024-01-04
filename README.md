@@ -10,7 +10,7 @@ Derived from the previous CS 2110 Docker image: https://github.com/gt-cs2110/cs2
 
 ## Regarding GBA
 
-Adding mGBA to the image increases the size by about 800 MB. However some semesters don't have GBA as part of the course, so for every version of the image, we will have two tags: one including GBA and one without it. In [cs2110docker.sh](cs2110docker.sh#L3) and [cs2110docker.bat](cs2110docker.bat#L4), before releasing scripts to students, make sure `release="stable"` is changed to `release="stable-gba"` to pull the image with mGBA, and vice versa to pull the image without it (no quotes in batch file). 
+Adding mGBA to the image increases the size by about 800 MB. However, some semesters don't have GBA as part of the course, so for every version of the image, we will have two tags: one including GBA and one without it. In [cs2110docker.sh](cs2110docker.sh#L3) and [cs2110docker.bat](cs2110docker.bat#L4), before releasing scripts to students, make sure `release="stable"` is changed to `release="stable-gba"` to pull the image with mGBA, and vice versa to pull the image without it (no quotes in batch file). 
 
 Another thing to note is that this image does not contain an emulator. It provides just the dependencies the student needs to build a GBA file, from their source code, which a student can then run on an emulator on their host machine.
 
@@ -24,4 +24,4 @@ To exclude mGBA: `docker buildx build --push --platform linux/arm64/v8,linux/amd
 
 To include mGBA: `docker buildx build --build-arg GBA="yes" --push --platform linux/arm64/v8,linux/amd64 --tag gtcs2110/cs2110docker-c:<insert version here>-gba .`
 
-TODO: Create a pipeline to automatically 
+TODO: Create a pipeline to automatically push to Dockerhub
