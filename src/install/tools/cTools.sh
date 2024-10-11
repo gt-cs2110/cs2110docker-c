@@ -4,7 +4,7 @@ set -e
 
 echo "Install gcc/gdb"
 apt-get update
-apt-get install -y gcc gdb build-essential libc6 pkg-config check valgrind cmake
+apt-get install -y gcc gdb build-essential libc6 pkg-config libcriterion-dev valgrind cmake
 apt-get clean -y
 
 rm -rf /var/lib/apt/lists/*

@@ -25,4 +25,5 @@ RUN $INST_SCRIPTS/base/man_pages.sh
 ### Install gcc/gdb
 RUN $INST_SCRIPTS/tools/cTools.sh
 
+WORKDIR $HOME/host
 ENTRYPOINT ["/bin/bash"]
