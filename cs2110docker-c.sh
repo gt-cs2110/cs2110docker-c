@@ -1,6 +1,6 @@
 #!/bin/bash
 
-release="stable"
+release="alpha"
 imageBaseName="gtcs2110/criterion-docker"
 imageName="${imageBaseName}:${release}"
 

@@ -25,5 +25,10 @@ RUN $INST_SCRIPTS/base/man_pages.sh
 ### Install gcc/gdb
 RUN $INST_SCRIPTS/tools/cTools.sh
 
+RUN rm -f /usr/lib/x86_64-linux-gnu/libcriterion.so*
+COPY lib/libcriterion.so /usr/lib/x86_64-linux-gnu
+
+RUN ldconfig
+
 WORKDIR $HOME/host
 ENTRYPOINT ["/bin/bash"]
