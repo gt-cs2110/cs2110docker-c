@@ -1,6 +1,6 @@
 #!/bin/bash
 
-release="alpha"
+release="stable"
 imageBaseName="gtcs2110/cs2110docker-c"
 imageName="${imageBaseName}:${release}"
 
