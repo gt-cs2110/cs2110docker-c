@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 set release=stable
-set imageBaseName=gtcs2110/criterion-docker
+set imageBaseName=gtcs2110/cs2110docker-c
 set imageName=%imageBaseName%:%release%
 
 set description="Run the CS 2110 C Docker Container: cs2110docker.bat [start|stop|help]"
