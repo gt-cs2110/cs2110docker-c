@@ -1,5 +1,6 @@
 FROM ubuntu:22.04
 ARG GBA
+ARG TARGETPLATFORM
 
 ENV REFRESHED_AT=2024-01-04
 ENV CS2110_IMAGE_VERSION=1.1.0
@@ -30,26 +31,11 @@ RUN $INST_SCRIPTS/base/man_pages.sh
 ### Install LC3 autograder
 RUN $INST_SCRIPTS/tools/lc3Tools.sh
 
-### Install gcc/gdb and mgba
+### Install gcc/gdb, mGBA (optional), and Criterion
 RUN $INST_SCRIPTS/tools/cTools.sh
 RUN if [ -n "$GBA" ]; then $INST_SCRIPTS/tools/gba.sh; fi
 
-ARG TARGETPLATFORM
-
-RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
-        export PLATFORM_LIB="libcriterion_amd64.so"; \
-		export PLATFORM_DIR="x86_64-linux-gnu"; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
-        export PLATFORM_LIB="libcriterion_arm64.so"; \
-		export PLATFORM_DIR="x86_64-linux-gnu"; \
-    fi
-
-ADD lib/libcriterion_amd64.so /criterion/libcriterion_amd64.so
-ADD lib/libcriterion_arm64.so /criterion/libcriterion_arm64.so
-RUN rm -f /usr/lib/${PLATFORM_DIR}/libcriterion.so*
-RUN mv /criterion/${PLATFORM_LIB} /usr/lib/${PLATFORM_DIR}/libcriterion.so
-
-RUN ldconfig
-
+# Not necessary post-build
+RUN rm -rf $INST_SCRIPTS
 WORKDIR $HOME/host
 ENTRYPOINT ["/bin/bash"]
