@@ -1,7 +1,7 @@
 #!/bin/bash
 
-release="stable"
-imageBaseName="gtcs2110/cs2110docker-c"
+release="alpha"
+imageBaseName="gtcs2110/criterion-docker"
 imageName="${imageBaseName}:${release}"
 
 define() { IFS=$'\n' read -r -d '' "${1}" || true; }
@@ -25,7 +25,7 @@ EOF
 
 print_help() {
   >&2 echo -e "$description\n\n$usage_text"
-} 
+}
 
 print_usage() {
   >&2 echo "$usage_text"

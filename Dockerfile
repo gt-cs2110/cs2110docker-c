@@ -31,4 +31,22 @@ RUN $INST_SCRIPTS/base/man_pages.sh
 RUN $INST_SCRIPTS/tools/cTools.sh
 RUN if [ -n "$GBA" ]; then $INST_SCRIPTS/tools/gba.sh; fi
 
+ARG TARGETPLATFORM
+
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then \
+        export PLATFORM_LIB="libcriterion_amd64.so"; \
+		export PLATFORM_DIR="x86_64-linux-gnu"; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then \
+        export PLATFORM_LIB="libcriterion_arm64.so"; \
+		export PLATFORM_DIR="x86_64-linux-gnu"; \
+    fi
+
+ADD libcriterion_amd64.so /criterion/libcriterion_amd64.so
+ADD libcriterion_arm64.so /criterion/libcriterion_arm64.so
+RUN rm -f /usr/lib/${PLATFORM_DIR}/libcriterion.so*
+RUN mv /criterion/${PLATFORM_LIB} /usr/lib/${PLATFORM_DIR}/libcriterion.so
+
+RUN ldconfig
+
+WORKDIR $HOME/host
 ENTRYPOINT ["/bin/bash"]
