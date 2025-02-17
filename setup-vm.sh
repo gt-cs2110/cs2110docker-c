@@ -16,21 +16,21 @@ cp -r ./src/install/ "$INST_SCRIPTS/"
 find "$INST_SCRIPTS" -name '*.sh' -exec chmod a+x {} +
 
 ### Apply any necessary patches during pre-installation
-"$INST_SCRIPTS/patches/apply_preinstall_patches.sh"
+sudo "$INST_SCRIPTS/patches/apply_preinstall_patches.sh"
 
 ### Install some common tools and applications
-"$INST_SCRIPTS/base/tools.sh"
+sudo "$INST_SCRIPTS/base/tools.sh"
 export LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 ### Install man pages
-"$INST_SCRIPTS/base/man_pages.sh"
+sudo "$INST_SCRIPTS/base/man_pages.sh"
 
 ### Install LC3 autograder
-"$INST_SCRIPTS/tools/lc3Tools.sh"
+sudo "$INST_SCRIPTS/tools/lc3Tools.sh"
 
 ### Install gcc/gdb, mGBA (optional), and Criterion
-"$INST_SCRIPTS/tools/cTools.sh"
-if [ -n "$GBA" ]; then "$INST_SCRIPTS/tools/gba.sh"; fi
+sudo "$INST_SCRIPTS/tools/cTools.sh"
+if [ -n "$GBA" ]; then sudo "$INST_SCRIPTS/tools/gba.sh"; fi
 
 # Not necessary post-build
 rm -rf "$INST_SCRIPTS_DIRNAME"
