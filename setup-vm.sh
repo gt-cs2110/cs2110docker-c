@@ -18,7 +18,7 @@ cp -r ./src/install/ "$INST_SCRIPTS/"
 find "$INST_SCRIPTS" -name '*.sh' -exec chmod a+x {} +
 
 ### Apply any necessary patches during pre-installation
-"${SUDO_CMD[@]}" "$INST_SCRIPTS/patches/apply_preinstall_patches.sh"
+#"${SUDO_CMD[@]}" "$INST_SCRIPTS/patches/apply_preinstall_patches.sh"
 
 ### Install some common tools and applications
 "${SUDO_CMD[@]}" "$INST_SCRIPTS/base/tools.sh"
