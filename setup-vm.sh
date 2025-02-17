@@ -5,7 +5,7 @@
 set -e -o pipefail
 
 export GBA=
-export INST_SCRIPTS_DIRNAME=~/cs2110
+export INST_SCRIPTS_DIRNAME=/tmp/cs2110
 export INST_SCRIPTS=$INST_SCRIPTS_DIRNAME/install
 export DEBIAN_FRONTEND=noninteractive
 
@@ -17,6 +17,7 @@ mkdir -p "$INST_SCRIPTS_DIRNAME"
 cp -r ./src/install/ "$INST_SCRIPTS/"
 find "$INST_SCRIPTS" -name '*.sh' -exec chmod a+x {} +
 
+# Don't need this because VMs will not disable installing manpages
 ### Apply any necessary patches during pre-installation
 #"${SUDO_CMD[@]}" "$INST_SCRIPTS/patches/apply_preinstall_patches.sh"
 
