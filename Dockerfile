@@ -33,7 +33,6 @@ RUN $INST_SCRIPTS/tools/lc3Tools.sh
 
 ### Install gcc/gdb, mGBA (optional), and Criterion
 RUN $INST_SCRIPTS/tools/cTools.sh
-RUN if [ -n "$GBA" ]; then $INST_SCRIPTS/tools/gba.sh; fi
 
 # Not necessary post-build
 RUN rm -rf $INST_SCRIPTS
