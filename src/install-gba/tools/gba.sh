@@ -21,7 +21,7 @@ rm $INST_SCRIPTS/pkgs/cs2110-gba-linker-script_1.1.2-0ubuntu1~ppa1~bionic1_amd64
 # MGBA emulator
 # Unfortunately apt-get install mgba-qt will get you a very outdated version
 # the deb packages are released directly on github
-if [[ "$TARGETPLATFORM" == "linux/amd64" ]]; then
+if [[ $(dpkg --print-architecture) = "arm64" ]]; then
     # No package for ARM so I had to build from source
     # TODO: find a better solution
 
